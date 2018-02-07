@@ -22,9 +22,8 @@ library(sp)
 # Check to make sure maxent is running through R
 system.file('java', package = 'dismo'); maxent(); .jinit()
 
-# Set working directory & clear environment
+# Set working directory
 setwd("~/Documents/School/1. Iowa State/_MS Project/_Leopold Project/Lyon_etal_2018_SDM_Project")
-rm(list = ls())
 
 # Handy shapefiles denoting country/state/ecotone borders
 countries <- rgdal::readOGR('./Borders', 'TM_WORLD_BORDERS-0.3')
@@ -35,7 +34,7 @@ eco <- rgdal::readOGR('./Borders', 'provinces', verbose = F)
                               # Data Entry and Preliminary Cleaning
 ##  ---------------------------------------------------------------------------------------------------------------------  ##
 # Set synonyms of the species you are interested in pulling
-spnames <- c('Koeleria macrantha', 'Koeleria gracilis', 'Koeleria albescens', 'Koeleria cristata')
+spnames <- c('Bouteloua curtipendula', 'Bouteloua racemosa', 'Atheropogon apludoides')
 
 # Set a bounding box to collect records wtihin (see "occ" function in "spocc" package)
 df_mult <- occ(query = spnames, from = c('gbif', 'ecoengine', 'bison'), limit = 10000,
@@ -61,14 +60,14 @@ records <- subset(records_dateclean, records_dateclean$date >= 1960 & records_da
 
 # How many does that leave us with?
 nrow(records)
-  ## 846
+  ## 1377
 
 # Get a spatial dataframe for climate cropping
 recordsSpatial <- SpatialPointsDataFrame(coords = cbind(records$longitude, records$latitude), data = records,
                                          proj4string = CRS('+proj=longlat +datumWGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0'))
 
 # Save it!
-saveRDS(records, './Species Records/KOEMAC V1 - Initial Records Pull.rds')
+saveRDS(records, './Species Records/BOUCUR V1 - Initial Records Pull.rds')
 
 ##  ----------------------------------------------------------------------------------------------------------------------  ##
                           # Match Records with Environmental Data
@@ -85,7 +84,7 @@ records <- cbind(records, envSpecies)
 if (any(is.na(rowSums(envSpecies)))) records <- records[-which(is.na(rowSums(envSpecies))), ]
 
 # Save this composite object
-saveRDS(records, './Species Records/KOEMAC V2 - Records & Env.rds')
+saveRDS(records, './Species Records/BOUCUR V2 - Records & Env.rds')
 
 ##  ----------------------------------------------------------------------------------------------------------------------  ##
                                     # Predictor Selection
@@ -104,7 +103,7 @@ pos <- correl > 0.7; neg <- correl < -0.7
 spokePlot(pos = pos, neg = neg, lwdPos = 2, lwdNeg = 2, colPos = 'black', colNeg = 'red')
 
 # Include only non-correlated variables as predictor variables
-predictors <- c('WC09', 'WC10', 'WC16', 'WC17', 'WC18')
+predictors <- c('WC08', 'WC09', 'WC10', 'WC16', 'WC17', 'WC19')
 
 ##  ---------------------------------------------------------------------------------------------------------------------  ##
                                 # Random BG Site Selection
@@ -123,7 +122,7 @@ if (any(isNa)) {
 randomBg <- cbind(randomBgSites, randomBgEnv)
 names(randomBg)[1:2] <- c('longitude', 'latitude')
 
-save(randomBg, file = './Species Records/KOEMAC - Random BG.Rdata', compress = T)
+save(randomBg, file = './Species Records/BOUCUR - Random BG.Rdata', compress = T)
 
 trainData <- rbind(records[ , c(paste0('WC0', 1:9), paste0('WC', 10:19))],
                    randomBgEnv[ , c(paste0('WC0', 1:9), paste0('WC', 10:19))])
@@ -138,11 +137,11 @@ presBg <- c(rep(1, nrow(records)), rep(0, nrow(randomBg)))
 manualSelectModel <- maxent(x = trainData, p = presBg)
 
 # Save that model
-save(manualSelectModel, file = './Preliminary Models/KOEMAC Model V1 - Manual Predictors.Rdata', compress = T)
+save(manualSelectModel, file = './Preliminary Models/BOUCUR Model V1 - Manual Predictors.Rdata', compress = T)
 
 # Predict the model across the landscape
 manualSelectMap <- predict(manualSelectModel, climate,
-                           filename = './Preliminary Models/KOEMAC Map V1 - Manual Predictors.Rdata',
+                           filename = './Preliminary Models/BOUCUR Map V1 - Manual Predictors.Rdata',
                            format = 'GTiff', overwrite = T)
 
 # Plot just so you can get a rough sense of the data
@@ -232,11 +231,11 @@ presBg <- c(rep(1, nrow(envThinnedRecords)), rep(0, nrow(randomBg)))
 envThinModel <- maxent(x = trainData, p = presBg)
 
 # Save!
-save(envThinModel, file = './Preliminary Models/KOEMAC Model V2 - Env Thinned.Rdata', compress = T)
+save(envThinModel, file = './Preliminary Models/BOUCUR Model V2 - Env Thinned.Rdata', compress = T)
 
 # Write current raster
 envThinMap <- predict(envThinModel, climate, 
-                      filename = './Preliminary Models/KOEMAC Map V2 - Env Thinned',
+                      filename = './Preliminary Models/BOUCUR Map V2 - Env Thinned',
                       format = 'GTiff', overwrite = T)
 
 # Plot
@@ -260,23 +259,23 @@ baselineModel <- maxentAic(trainData = trainData, presentBg = presBg, betaToTest
 baselineModel <- baselineModel$model
 
 # Save (this is the core model you'll use from here on out.)
-save(baselineModel, file = './Preliminary Models/KOEMAC Model V3 - Baseline.Rdata', compress = T)
+save(baselineModel, file = './Preliminary Models/BOUCUR Model V3 - Baseline.Rdata', compress = T)
 
 # And get a map of it
 baselineMap <- predict(baselineModel, climate,
-                       filename = './Preliminary Models/KOEMAC Map V3 - Baseline',
+                       filename = './Preliminary Models/BOUCUR Map V3 - Baseline',
                        format = 'GTiff', overwrite = T)
 
 # And also plot it in a save function
-jpeg(filename = './Maps/Current Maps/KOEMAC Current.jpg', width = 1080, height = 1138, quality = 100)
-plot(baselineMap, main = 'KOEMAC Complete')
+jpeg(filename = './Maps/Current Maps/BOUCUR Current.jpg', width = 1080, height = 1138, quality = 100)
+plot(baselineMap, main = 'BOUCUR Complete')
 sp::plot(countries, add = T, border = 'gray45')
 sp::plot(states, add = T, border = 'gray45')
 dev.off()
 
 # Just for fun, where are your chosen records from?
-jpeg(filename = './Maps/Current Maps/KOEMAC Occ.jpg', width = 1080, height = 1138, quality = 100)
-plot(recordsSpatial, main = 'KOEMAC')
+jpeg(filename = './Maps/Current Maps/BOUCUR Occ.jpg', width = 1080, height = 1138, quality = 100)
+plot(recordsSpatial, main = 'BOUCUR')
 sp::plot(countries, add = T, col = 'gray80')
 sp::plot(states, add = T, col = 'gray80')
 points(records$longitude, records$latitude, pch = 21, bg = 'gray45')
@@ -372,7 +371,7 @@ for (i in 1:5) {
   
   model <- model$model
   
-  save(model, file = paste0('./Preliminary Models/All Spp - K Folds/KOEMAC - K fold ', i, '.Rdata'),
+  save(model, file = paste0('./Preliminary Models/All Spp - K Folds/BOUCUR - K fold ', i, '.Rdata'),
        compress = T)
   
   # Predict to presences and background sites
@@ -413,12 +412,12 @@ cc45.pred <- subset(cc45, predictors)
 
 # Predict your beautiful model in these novel conditions
 future45BaselineMap <- predict(baselineModel, cc45.pred, 
-                               filename = './Future Models/KOEMAC - CC 45',
+                               filename = './Future Models/BOUCUR - CC 45',
                                format = 'GTiff', overwrite = T)
 
 # Plot it
-jpeg(filename = './Maps/Future Maps/KOEMAC CC 45.jpg', width = 1080, height = 1138, quality = 100)
-plot(future45BaselineMap, main = 'KOEMAC CC 4.5')
+jpeg(filename = './Maps/Future Maps/BOUCUR CC 45.jpg', width = 1080, height = 1138, quality = 100)
+plot(future45BaselineMap, main = 'BOUCUR CC 4.5')
 sp::plot(countries, add = T, border = 'gray45')
 sp::plot(states, add = T, border = 'gray45')
 dev.off()
@@ -427,8 +426,8 @@ dev.off()
 extrapMap45 <- mess(x = cc45.pred, v = randomBg[ , predictors], full = F)
 
 # Save once it is generated
-jpeg(filename = './Maps/MESS Maps/KOEMAC CC 45 MESS.jpg', width = 1080, height = 1138, quality = 100)
-plot(extrapMap45, main = 'KOEMAC MESS CC 4.5')
+jpeg(filename = './Maps/MESS Maps/BOUCUR CC 45 MESS.jpg', width = 1080, height = 1138, quality = 100)
+plot(extrapMap45, main = 'BOUCUR MESS CC 4.5')
 sp::plot(countries, add = T)
 sp::plot(states, add = T)
 dev.off()
@@ -447,12 +446,12 @@ cc85.pred <- subset(cc85, predictors)
 
 # Predict your beautiful model in these novel conditions
 future85BaselineMap <- predict(baselineModel, cc85.pred, 
-                               filename = './Future Models/KOEMAC - CC 85',
+                               filename = './Future Models/BOUCUR - CC 85',
                                format = 'GTiff', overwrite = T)
 
 # Plot it
-jpeg(filename = './Maps/Future Maps/KOEMAC CC 85.jpg', width = 1080, height = 1138, quality = 100)
-plot(future85BaselineMap, main = 'KOEMAC CC 4.5')
+jpeg(filename = './Maps/Future Maps/BOUCUR CC 85.jpg', width = 1080, height = 1138, quality = 100)
+plot(future85BaselineMap, main = 'BOUCUR CC 4.5')
 sp::plot(countries, add = T, border = 'gray45')
 sp::plot(states, add = T, border = 'gray45')
 dev.off()
@@ -461,8 +460,8 @@ dev.off()
 extrapMap85 <- mess(x = cc85.pred, v = randomBg[ , predictors], full = F)
 
 # Save once it is generated
-jpeg(filename = './Maps/MESS Maps/KOEMAC CC 85 MESS.jpg', width = 1080, height = 1138, quality = 100)
-plot(extrapMap85, main = 'KOEMAC MESS CC 4.5')
+jpeg(filename = './Maps/MESS Maps/BOUCUR CC 85 MESS.jpg', width = 1080, height = 1138, quality = 100)
+plot(extrapMap85, main = 'BOUCUR MESS CC 4.5')
 sp::plot(countries, add = T)
 sp::plot(states, add = T)
 dev.off()
