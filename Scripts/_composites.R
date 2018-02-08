@@ -34,7 +34,7 @@ boucur.pred <- c('WC08', 'WC09', 'WC10', 'WC16', 'WC17', 'WC19')
 schsco.pred <- c('WC08', 'WC09', 'WC10', 'WC16', 'WC17')
 sornut.pred <- c('WC08', 'WC09', 'WC10', 'WC16', 'WC17')
 ascinc.pred <- c('WC08', 'WC09', 'WC10', 'WC16', 'WC17')
-ascsyr.pred <- c('WC08', 'WC09', 'WC10', 'WC16', 'WC17')
+ascsyr.pred <- c('WC09', 'WC10', 'WC16', 'WC17', 'WC18')
 asctub.pred <- c('WC08', 'WC09', 'WC10', 'WC16', 'WC17')
 dryarg.pred <- c('WC08', 'WC10', 'WC11', 'WC16', 'WC17')
 lobsip.pred <- c('WC08', 'WC09', 'WC10', 'WC16', 'WC17')
@@ -86,7 +86,7 @@ elyvir.pos <- elyvir.map
 
 # Want to convert the values in both maps to thresholds for later summation across species (w/in fxnl group)
 elyvir.neg[elyvir.neg < thresh] = 1
-elyvir.neg[elyvir.neg >= thresh] = 0
+elyvir.neg[elyvir.neg >= thresh & elyvir.neg < 1] = 0
 elyvir.pos[elyvir.pos < thresh] = 0
 elyvir.pos[elyvir.pos >= thresh] = 1
 
@@ -99,7 +99,7 @@ elyvir.45map <- predict(elyvir, elyvir.predclim.45,
 elyvir.45neg <- elyvir.45map
 elyvir.45pos <- elyvir.45map
 elyvir.45neg[elyvir.45neg < thresh] = 1
-elyvir.45neg[elyvir.45neg >= thresh] = 0
+elyvir.45neg[elyvir.45neg >= thresh & elyvir.45neg < 1] = 0
 elyvir.45pos[elyvir.45pos < thresh] = 0
 elyvir.45pos[elyvir.45pos >= thresh] = 1
 
@@ -111,7 +111,7 @@ elyvir.85map <- predict(elyvir, elyvir.predclim.85,
 elyvir.85neg <- elyvir.85map
 elyvir.85pos <- elyvir.85map
 elyvir.85neg[elyvir.85neg < thresh] = 1
-elyvir.85neg[elyvir.85neg >= thresh] = 0
+elyvir.85neg[elyvir.85neg >= thresh & elyvir.85neg < 1] = 0
 elyvir.85pos[elyvir.85pos < thresh] = 0
 elyvir.85pos[elyvir.85pos >= thresh] = 1
 
@@ -126,7 +126,7 @@ koemac.map <- predict(koemac, koemac.predclim,
 koemac.neg <- koemac.map
 koemac.pos <- koemac.map
 koemac.neg[koemac.neg < thresh] = 1
-koemac.neg[koemac.neg >= thresh] = 0
+koemac.neg[koemac.neg >= thresh & koemac.neg < 1] = 0
 koemac.pos[koemac.pos < thresh] = 0
 koemac.pos[koemac.pos >= thresh] = 1
 koemac.predclim.45 <- subset(clim.45, koemac.pred)
@@ -136,7 +136,7 @@ koemac.45map <- predict(koemac, koemac.predclim.45,
 koemac.45neg <- koemac.45map
 koemac.45pos <- koemac.45map
 koemac.45neg[koemac.45neg < thresh] = 1
-koemac.45neg[koemac.45neg >= thresh] = 0
+koemac.45neg[koemac.45neg >= thresh & koemac.45neg < 1] = 0
 koemac.45pos[koemac.45pos < thresh] = 0
 koemac.45pos[koemac.45pos >= thresh] = 1
 koemac.predclim.85 <- subset(clim.85, koemac.pred)
@@ -146,7 +146,7 @@ koemac.85map <- predict(koemac, koemac.predclim.85,
 koemac.85neg <- koemac.85map
 koemac.85pos <- koemac.85map
 koemac.85neg[koemac.85neg < thresh] = 1
-koemac.85neg[koemac.85neg >= thresh] = 0
+koemac.85neg[koemac.85neg >= thresh & koemac.85neg < 1] = 0
 koemac.85pos[koemac.85pos < thresh] = 0
 koemac.85pos[koemac.85pos >= thresh] = 1
 
@@ -160,7 +160,7 @@ stispa.map <- predict(stispa, stispa.predclim,
 stispa.neg <- stispa.map
 stispa.pos <- stispa.map
 stispa.neg[stispa.neg < thresh] = 1
-stispa.neg[stispa.neg >= thresh] = 0
+stispa.neg[stispa.neg >= thresh & stispa.neg < 1] = 0
 stispa.pos[stispa.pos < thresh] = 0
 stispa.pos[stispa.pos >= thresh] = 1
 stispa.predclim.45 <- subset(clim.45, stispa.pred)
@@ -170,7 +170,7 @@ stispa.45map <- predict(stispa, stispa.predclim.45,
 stispa.45neg <- stispa.45map
 stispa.45pos <- stispa.45map
 stispa.45neg[stispa.45neg < thresh] = 1
-stispa.45neg[stispa.45neg >= thresh] = 0
+stispa.45neg[stispa.45neg >= thresh & stispa.45neg < 1] = 0
 stispa.45pos[stispa.45pos < thresh] = 0
 stispa.45pos[stispa.45pos >= thresh] = 1
 stispa.predclim.85 <- subset(clim.85, stispa.pred)
@@ -180,7 +180,7 @@ stispa.85map <- predict(stispa, stispa.predclim.85,
 stispa.85neg <- stispa.85map
 stispa.85pos <- stispa.85map
 stispa.85neg[stispa.85neg < thresh] = 1
-stispa.85neg[stispa.85neg >= thresh] = 0
+stispa.85neg[stispa.85neg >= thresh & stispa.85neg < 1] = 0
 stispa.85pos[stispa.85pos < thresh] = 0
 stispa.85pos[stispa.85pos >= thresh] = 1
 
@@ -194,7 +194,7 @@ boucur.map <- predict(boucur, boucur.predclim,
 boucur.neg <- boucur.map
 boucur.pos <- boucur.map
 boucur.neg[boucur.neg < thresh] = 1
-boucur.neg[boucur.neg >= thresh] = 0
+boucur.neg[boucur.neg >= thresh & boucur.neg < 1] = 0
 boucur.pos[boucur.pos < thresh] = 0
 boucur.pos[boucur.pos >= thresh] = 1
 boucur.predclim.45 <- subset(clim.45, boucur.pred)
@@ -204,7 +204,7 @@ boucur.45map <- predict(boucur, boucur.predclim.45,
 boucur.45neg <- boucur.45map
 boucur.45pos <- boucur.45map
 boucur.45neg[boucur.45neg < thresh] = 1
-boucur.45neg[boucur.45neg >= thresh] = 0
+boucur.45neg[boucur.45neg >= thresh & boucur.45neg < 1] = 0
 boucur.45pos[boucur.45pos < thresh] = 0
 boucur.45pos[boucur.45pos >= thresh] = 1
 boucur.predclim.85 <- subset(clim.85, boucur.pred)
@@ -214,7 +214,7 @@ boucur.85map <- predict(boucur, boucur.predclim.85,
 boucur.85neg <- boucur.85map
 boucur.85pos <- boucur.85map
 boucur.85neg[boucur.85neg < thresh] = 1
-boucur.85neg[boucur.85neg >= thresh] = 0
+boucur.85neg[boucur.85neg >= thresh & boucur.85neg < 1] = 0
 boucur.85pos[boucur.85pos < thresh] = 0
 boucur.85pos[boucur.85pos >= thresh] = 1
 
@@ -228,7 +228,7 @@ schsco.map <- predict(schsco, schsco.predclim,
 schsco.neg <- schsco.map
 schsco.pos <- schsco.map
 schsco.neg[schsco.neg < thresh] = 1
-schsco.neg[schsco.neg >= thresh] = 0
+schsco.neg[schsco.neg >= thresh & schsco.neg < 1] = 0
 schsco.pos[schsco.pos < thresh] = 0
 schsco.pos[schsco.pos >= thresh] = 1
 schsco.predclim.45 <- subset(clim.45, schsco.pred)
@@ -238,7 +238,7 @@ schsco.45map <- predict(schsco, schsco.predclim.45,
 schsco.45neg <- schsco.45map
 schsco.45pos <- schsco.45map
 schsco.45neg[schsco.45neg < thresh] = 1
-schsco.45neg[schsco.45neg >= thresh] = 0
+schsco.45neg[schsco.45neg >= thresh & schsco.45neg < 1] = 0
 schsco.45pos[schsco.45pos < thresh] = 0
 schsco.45pos[schsco.45pos >= thresh] = 1
 schsco.predclim.85 <- subset(clim.85, schsco.pred)
@@ -248,7 +248,7 @@ schsco.85map <- predict(schsco, schsco.predclim.85,
 schsco.85neg <- schsco.85map
 schsco.85pos <- schsco.85map
 schsco.85neg[schsco.85neg < thresh] = 1
-schsco.85neg[schsco.85neg >= thresh] = 0
+schsco.85neg[schsco.85neg >= thresh & schsco.85neg < 1] = 0
 schsco.85pos[schsco.85pos < thresh] = 0
 schsco.85pos[schsco.85pos >= thresh] = 1
 
@@ -262,7 +262,7 @@ sornut.map <- predict(sornut, sornut.predclim,
 sornut.neg <- sornut.map
 sornut.pos <- sornut.map
 sornut.neg[sornut.neg < thresh] = 1
-sornut.neg[sornut.neg >= thresh] = 0
+sornut.neg[sornut.neg >= thresh & sornut.neg < 1] = 0
 sornut.pos[sornut.pos < thresh] = 0
 sornut.pos[sornut.pos >= thresh] = 1
 sornut.predclim.45 <- subset(clim.45, sornut.pred)
@@ -272,7 +272,7 @@ sornut.45map <- predict(sornut, sornut.predclim.45,
 sornut.45neg <- sornut.45map
 sornut.45pos <- sornut.45map
 sornut.45neg[sornut.45neg < thresh] = 1
-sornut.45neg[sornut.45neg >= thresh] = 0
+sornut.45neg[sornut.45neg >= thresh & sornut.45neg < 1] = 0
 sornut.45pos[sornut.45pos < thresh] = 0
 sornut.45pos[sornut.45pos >= thresh] = 1
 sornut.predclim.85 <- subset(clim.85, sornut.pred)
@@ -282,7 +282,7 @@ sornut.85map <- predict(sornut, sornut.predclim.85,
 sornut.85neg <- sornut.85map
 sornut.85pos <- sornut.85map
 sornut.85neg[sornut.85neg < thresh] = 1
-sornut.85neg[sornut.85neg >= thresh] = 0
+sornut.85neg[sornut.85neg >= thresh & sornut.85neg < 1] = 0
 sornut.85pos[sornut.85pos < thresh] = 0
 sornut.85pos[sornut.85pos >= thresh] = 1
 
@@ -296,7 +296,7 @@ ascinc.map <- predict(ascinc, ascinc.predclim,
 ascinc.neg <- ascinc.map
 ascinc.pos <- ascinc.map
 ascinc.neg[ascinc.neg < thresh] = 1
-ascinc.neg[ascinc.neg >= thresh] = 0
+ascinc.neg[ascinc.neg >= thresh & ascinc.neg < 1] = 0
 ascinc.pos[ascinc.pos < thresh] = 0
 ascinc.pos[ascinc.pos >= thresh] = 1
 ascinc.predclim.45 <- subset(clim.45, ascinc.pred)
@@ -306,7 +306,7 @@ ascinc.45map <- predict(ascinc, ascinc.predclim.45,
 ascinc.45neg <- ascinc.45map
 ascinc.45pos <- ascinc.45map
 ascinc.45neg[ascinc.45neg < thresh] = 1
-ascinc.45neg[ascinc.45neg >= thresh] = 0
+ascinc.45neg[ascinc.45neg >= thresh & ascinc.45neg < 1] = 0
 ascinc.45pos[ascinc.45pos < thresh] = 0
 ascinc.45pos[ascinc.45pos >= thresh] = 1
 ascinc.predclim.85 <- subset(clim.85, ascinc.pred)
@@ -316,7 +316,7 @@ ascinc.85map <- predict(ascinc, ascinc.predclim.85,
 ascinc.85neg <- ascinc.85map
 ascinc.85pos <- ascinc.85map
 ascinc.85neg[ascinc.85neg < thresh] = 1
-ascinc.85neg[ascinc.85neg >= thresh] = 0
+ascinc.85neg[ascinc.85neg >= thresh & ascinc.85neg < 1] = 0
 ascinc.85pos[ascinc.85pos < thresh] = 0
 ascinc.85pos[ascinc.85pos >= thresh] = 1
 
@@ -330,7 +330,7 @@ ascsyr.map <- predict(ascsyr, ascsyr.predclim,
 ascsyr.neg <- ascsyr.map
 ascsyr.pos <- ascsyr.map
 ascsyr.neg[ascsyr.neg < thresh] = 1
-ascsyr.neg[ascsyr.neg >= thresh] = 0
+ascsyr.neg[ascsyr.neg >= thresh & ascsyr.neg < 1] = 0
 ascsyr.pos[ascsyr.pos < thresh] = 0
 ascsyr.pos[ascsyr.pos >= thresh] = 1
 ascsyr.predclim.45 <- subset(clim.45, ascsyr.pred)
@@ -340,7 +340,7 @@ ascsyr.45map <- predict(ascsyr, ascsyr.predclim.45,
 ascsyr.45neg <- ascsyr.45map
 ascsyr.45pos <- ascsyr.45map
 ascsyr.45neg[ascsyr.45neg < thresh] = 1
-ascsyr.45neg[ascsyr.45neg >= thresh] = 0
+ascsyr.45neg[ascsyr.45neg >= thresh & ascsyr.45neg < 1] = 0
 ascsyr.45pos[ascsyr.45pos < thresh] = 0
 ascsyr.45pos[ascsyr.45pos >= thresh] = 1
 ascsyr.predclim.85 <- subset(clim.85, ascsyr.pred)
@@ -350,7 +350,7 @@ ascsyr.85map <- predict(ascsyr, ascsyr.predclim.85,
 ascsyr.85neg <- ascsyr.85map
 ascsyr.85pos <- ascsyr.85map
 ascsyr.85neg[ascsyr.85neg < thresh] = 1
-ascsyr.85neg[ascsyr.85neg >= thresh] = 0
+ascsyr.85neg[ascsyr.85neg >= thresh & ascsyr.85neg < 1] = 0
 ascsyr.85pos[ascsyr.85pos < thresh] = 0
 ascsyr.85pos[ascsyr.85pos >= thresh] = 1
 
@@ -364,7 +364,7 @@ asctub.map <- predict(asctub, asctub.predclim,
 asctub.neg <- asctub.map
 asctub.pos <- asctub.map
 asctub.neg[asctub.neg < thresh] = 1
-asctub.neg[asctub.neg >= thresh] = 0
+asctub.neg[asctub.neg >= thresh & asctub.neg < 1] = 0
 asctub.pos[asctub.pos < thresh] = 0
 asctub.pos[asctub.pos >= thresh] = 1
 asctub.predclim.45 <- subset(clim.45, asctub.pred)
@@ -374,7 +374,7 @@ asctub.45map <- predict(asctub, asctub.predclim.45,
 asctub.45neg <- asctub.45map
 asctub.45pos <- asctub.45map
 asctub.45neg[asctub.45neg < thresh] = 1
-asctub.45neg[asctub.45neg >= thresh] = 0
+asctub.45neg[asctub.45neg >= thresh & asctub.45neg < 1] = 0
 asctub.45pos[asctub.45pos < thresh] = 0
 asctub.45pos[asctub.45pos >= thresh] = 1
 asctub.predclim.85 <- subset(clim.85, asctub.pred)
@@ -384,7 +384,7 @@ asctub.85map <- predict(asctub, asctub.predclim.85,
 asctub.85neg <- asctub.85map
 asctub.85pos <- asctub.85map
 asctub.85neg[asctub.85neg < thresh] = 1
-asctub.85neg[asctub.85neg >= thresh] = 0
+asctub.85neg[asctub.85neg >= thresh & asctub.85neg < 1] = 0
 asctub.85pos[asctub.85pos < thresh] = 0
 asctub.85pos[asctub.85pos >= thresh] = 1
 
@@ -398,7 +398,7 @@ dryarg.map <- predict(dryarg, dryarg.predclim,
 dryarg.neg <- dryarg.map
 dryarg.pos <- dryarg.map
 dryarg.neg[dryarg.neg < thresh] = 1
-dryarg.neg[dryarg.neg >= thresh] = 0
+dryarg.neg[dryarg.neg >= thresh & dryarg.neg < 1] = 0
 dryarg.pos[dryarg.pos < thresh] = 0
 dryarg.pos[dryarg.pos >= thresh] = 1
 dryarg.predclim.45 <- subset(clim.45, dryarg.pred)
@@ -408,7 +408,7 @@ dryarg.45map <- predict(dryarg, dryarg.predclim.45,
 dryarg.45neg <- dryarg.45map
 dryarg.45pos <- dryarg.45map
 dryarg.45neg[dryarg.45neg < thresh] = 1
-dryarg.45neg[dryarg.45neg >= thresh] = 0
+dryarg.45neg[dryarg.45neg >= thresh & dryarg.45neg < 1] = 0
 dryarg.45pos[dryarg.45pos < thresh] = 0
 dryarg.45pos[dryarg.45pos >= thresh] = 1
 dryarg.predclim.85 <- subset(clim.85, dryarg.pred)
@@ -418,7 +418,7 @@ dryarg.85map <- predict(dryarg, dryarg.predclim.85,
 dryarg.85neg <- dryarg.85map
 dryarg.85pos <- dryarg.85map
 dryarg.85neg[dryarg.85neg < thresh] = 1
-dryarg.85neg[dryarg.85neg >= thresh] = 0
+dryarg.85neg[dryarg.85neg >= thresh & dryarg.85neg < 1] = 0
 dryarg.85pos[dryarg.85pos < thresh] = 0
 dryarg.85pos[dryarg.85pos >= thresh] = 1
 
@@ -432,7 +432,7 @@ lobsip.map <- predict(lobsip, lobsip.predclim,
 lobsip.neg <- lobsip.map
 lobsip.pos <- lobsip.map
 lobsip.neg[lobsip.neg < thresh] = 1
-lobsip.neg[lobsip.neg >= thresh] = 0
+lobsip.neg[lobsip.neg >= thresh & lobsip.neg < 1] = 0
 lobsip.pos[lobsip.pos < thresh] = 0
 lobsip.pos[lobsip.pos >= thresh] = 1
 lobsip.predclim.45 <- subset(clim.45, lobsip.pred)
@@ -442,7 +442,7 @@ lobsip.45map <- predict(lobsip, lobsip.predclim.45,
 lobsip.45neg <- lobsip.45map
 lobsip.45pos <- lobsip.45map
 lobsip.45neg[lobsip.45neg < thresh] = 1
-lobsip.45neg[lobsip.45neg >= thresh] = 0
+lobsip.45neg[lobsip.45neg >= thresh & lobsip.45neg < 1] = 0
 lobsip.45pos[lobsip.45pos < thresh] = 0
 lobsip.45pos[lobsip.45pos >= thresh] = 1
 lobsip.predclim.85 <- subset(clim.85, lobsip.pred)
@@ -452,7 +452,7 @@ lobsip.85map <- predict(lobsip, lobsip.predclim.85,
 lobsip.85neg <- lobsip.85map
 lobsip.85pos <- lobsip.85map
 lobsip.85neg[lobsip.85neg < thresh] = 1
-lobsip.85neg[lobsip.85neg >= thresh] = 0
+lobsip.85neg[lobsip.85neg >= thresh & lobsip.85neg < 1] = 0
 lobsip.85pos[lobsip.85pos < thresh] = 0
 lobsip.85pos[lobsip.85pos >= thresh] = 1
 
@@ -466,7 +466,7 @@ monfis.map <- predict(monfis, monfis.predclim,
 monfis.neg <- monfis.map
 monfis.pos <- monfis.map
 monfis.neg[monfis.neg < thresh] = 1
-monfis.neg[monfis.neg >= thresh] = 0
+monfis.neg[monfis.neg >= thresh & monfis.neg < 1] = 0
 monfis.pos[monfis.pos < thresh] = 0
 monfis.pos[monfis.pos >= thresh] = 1
 monfis.predclim.45 <- subset(clim.45, monfis.pred)
@@ -476,7 +476,7 @@ monfis.45map <- predict(monfis, monfis.predclim.45,
 monfis.45neg <- monfis.45map
 monfis.45pos <- monfis.45map
 monfis.45neg[monfis.45neg < thresh] = 1
-monfis.45neg[monfis.45neg >= thresh] = 0
+monfis.45neg[monfis.45neg >= thresh & monfis.45neg < 1] = 0
 monfis.45pos[monfis.45pos < thresh] = 0
 monfis.45pos[monfis.45pos >= thresh] = 1
 monfis.predclim.85 <- subset(clim.85, monfis.pred)
@@ -486,7 +486,7 @@ monfis.85map <- predict(monfis, monfis.predclim.85,
 monfis.85neg <- monfis.85map
 monfis.85pos <- monfis.85map
 monfis.85neg[monfis.85neg < thresh] = 1
-monfis.85neg[monfis.85neg >= thresh] = 0
+monfis.85neg[monfis.85neg >= thresh & monfis.85neg < 1] = 0
 monfis.85pos[monfis.85pos < thresh] = 0
 monfis.85pos[monfis.85pos >= thresh] = 1
 
@@ -500,7 +500,7 @@ amocan.map <- predict(amocan, amocan.predclim,
 amocan.neg <- amocan.map
 amocan.pos <- amocan.map
 amocan.neg[amocan.neg < thresh] = 1
-amocan.neg[amocan.neg >= thresh] = 0
+amocan.neg[amocan.neg >= thresh & amocan.neg < 1] = 0
 amocan.pos[amocan.pos < thresh] = 0
 amocan.pos[amocan.pos >= thresh] = 1
 amocan.predclim.45 <- subset(clim.45, amocan.pred)
@@ -510,7 +510,7 @@ amocan.45map <- predict(amocan, amocan.predclim.45,
 amocan.45neg <- amocan.45map
 amocan.45pos <- amocan.45map
 amocan.45neg[amocan.45neg < thresh] = 1
-amocan.45neg[amocan.45neg >= thresh] = 0
+amocan.45neg[amocan.45neg >= thresh & amocan.45neg < 1] = 0
 amocan.45pos[amocan.45pos < thresh] = 0
 amocan.45pos[amocan.45pos >= thresh] = 1
 amocan.predclim.85 <- subset(clim.85, amocan.pred)
@@ -520,7 +520,7 @@ amocan.85map <- predict(amocan, amocan.predclim.85,
 amocan.85neg <- amocan.85map
 amocan.85pos <- amocan.85map
 amocan.85neg[amocan.85neg < thresh] = 1
-amocan.85neg[amocan.85neg >= thresh] = 0
+amocan.85neg[amocan.85neg >= thresh & amocan.85neg < 1] = 0
 amocan.85pos[amocan.85pos < thresh] = 0
 amocan.85pos[amocan.85pos >= thresh] = 1
 
@@ -534,7 +534,7 @@ petcan.map <- predict(petcan, petcan.predclim,
 petcan.neg <- petcan.map
 petcan.pos <- petcan.map
 petcan.neg[petcan.neg < thresh] = 1
-petcan.neg[petcan.neg >= thresh] = 0
+petcan.neg[petcan.neg >= thresh & petcan.neg < 1] = 0
 petcan.pos[petcan.pos < thresh] = 0
 petcan.pos[petcan.pos >= thresh] = 1
 petcan.predclim.45 <- subset(clim.45, petcan.pred)
@@ -544,7 +544,7 @@ petcan.45map <- predict(petcan, petcan.predclim.45,
 petcan.45neg <- petcan.45map
 petcan.45pos <- petcan.45map
 petcan.45neg[petcan.45neg < thresh] = 1
-petcan.45neg[petcan.45neg >= thresh] = 0
+petcan.45neg[petcan.45neg >= thresh & petcan.45neg < 1] = 0
 petcan.45pos[petcan.45pos < thresh] = 0
 petcan.45pos[petcan.45pos >= thresh] = 1
 petcan.predclim.85 <- subset(clim.85, petcan.pred)
@@ -554,7 +554,7 @@ petcan.85map <- predict(petcan, petcan.predclim.85,
 petcan.85neg <- petcan.85map
 petcan.85pos <- petcan.85map
 petcan.85neg[petcan.85neg < thresh] = 1
-petcan.85neg[petcan.85neg >= thresh] = 0
+petcan.85neg[petcan.85neg >= thresh & petcan.85neg < 1] = 0
 petcan.85pos[petcan.85pos < thresh] = 0
 petcan.85pos[petcan.85pos >= thresh] = 1
 
@@ -562,52 +562,97 @@ petcan.85pos[petcan.85pos >= thresh] = 1
                                     # Construct Composite Maps!
 ##  ---------------------------------------------------------------------------------------------------------------------  ##
 # Make a composite map for the positive and negative versions of present conditions
-comp.pos <- (elyvir.pos + koemac.pos + stispa.pos + 
-               boucur.pos + schsco.pos + sornut.pos +
-               ascinc.pos + ascinc.pos + ascinc.pos +
-               dryarg.pos + lobsip.pos + monfis.pos + 
-               amocan.pos + petcan.pos)
+  ## BUT make sure it's functional group specific
 
-comp.neg <- (elyvir.neg + koemac.neg + stispa.neg + 
-               boucur.neg + schsco.neg + sornut.neg +
-               ascinc.neg + ascinc.neg + ascinc.neg +
-               dryarg.neg + lobsip.neg + monfis.neg + 
-               amocan.neg + petcan.neg)
+# For the sake of simplicty, only the first functional group will have specific operations commented out
+# All codes follow the same pattern, so hopefully that is an acceptable shortcut
 
-# Do it for the future conditions too!
-  ## RCP 4.5
-comp.45pos <- (elyvir.45pos + koemac.45pos + stispa.45pos + 
-               boucur.45pos + schsco.45pos + sornut.45pos +
-               ascinc.45pos + ascinc.45pos + ascinc.45pos +
-               dryarg.45pos + lobsip.45pos + monfis.45pos + 
-               amocan.45pos + petcan.45pos)
+##  ---------------------------------------  ##
+            # C3 Grasses
+##  ---------------------------------------  ##
+# Make the composite map files by summing across species within functional group
+  ## Need both positive and negative for current, 4.5, and 8.5 conditions
+c3.pos <- (elyvir.pos + koemac.pos + stispa.pos)
+c3.neg <- (elyvir.neg + koemac.neg + stispa.neg)
+c3.45pos <- (elyvir.45pos + koemac.45pos + stispa.45pos)
+c3.45neg <- (elyvir.45neg + koemac.45neg + stispa.45neg)
+c3.85pos <- (elyvir.85pos + koemac.85pos + stispa.85pos)
+c3.85neg <- (elyvir.85neg + koemac.85neg + stispa.85neg)
 
-comp.45neg <- (elyvir.45neg + koemac.45neg + stispa.45neg + 
-               boucur.45neg + schsco.45neg + sornut.45neg +
-               ascinc.45neg + ascinc.45neg + ascinc.45neg +
-               dryarg.45neg + lobsip.45neg + monfis.45neg + 
-               amocan.45neg + petcan.45neg)
-
-  ## RCP 8.5
-comp.85pos <- (elyvir.85pos + koemac.85pos + stispa.85pos + 
-                 boucur.85pos + schsco.85pos + sornut.85pos +
-                 ascinc.85pos + ascinc.85pos + ascinc.85pos +
-                 dryarg.85pos + lobsip.85pos + monfis.85pos + 
-                 amocan.85pos + petcan.85pos)
-
-comp.85neg <- (elyvir.85neg + koemac.85neg + stispa.85neg + 
-                 boucur.85neg + schsco.85neg + sornut.85neg +
-                 ascinc.85neg + ascinc.85neg + ascinc.85neg +
-                 dryarg.85neg + lobsip.85neg + monfis.85neg + 
-                 amocan.85neg + petcan.85neg)
-
-# Plot them!
-jpeg(file = "./Maps/Composite Maps/comp_positive.jpg", 
-     width = 1080, height = 1138, quality = 100)
-plot(present.map, col = rev(topo.colors(7)))
+# Now can plot each of these and save them!
+jpeg(file = "./Maps/Composite Maps/c3_current_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(c3.pos, col = rev(topo.colors(4)), main = 'C3 - Current (+)')
 sp::plot(countries, add = T, border = 'gray45')
 sp::plot(states, add = T, border = 'gray45')
 dev.off()
+
+jpeg(file = "./Maps/Composite Maps/c3_current_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(c3.neg, col = rev(bpy.colors(4)), main = 'C3 - Current (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/c3_45_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(c3.45pos, col = rev(topo.colors(4)), main = 'C3 - 4.5 (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/c3_45_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(c3.45neg, col = rev(bpy.colors(4)), main = 'C3 - 4.5 (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/c3_85_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(c3.85pos, col = rev(topo.colors(4)), main = 'C3 - 8.5 (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/c3_85_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(c3.85neg, col = rev(bpy.colors(4)), main = 'C3 - 8.5 (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+##  ---------------------------------------  ##
+            # C4 Grasses
+##  ---------------------------------------  ##
+c4.pos <- (boucur.pos + schsco.pos + sornut.pos)
+
+
+
+
+
+
+
+jpeg(file = "./Maps/Composite Maps/c4_current_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(c4.pos, col = rev(topo.colors(4)), main = 'C4 - Current (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/c4_current_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(c4.neg, col = rev(bpy.colors(4)), main = 'C4 - Current (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+
+##  ---------------------------------------  ##
+              # Forbs
+##  ---------------------------------------  ##
+forb.pos <- (ascinc.pos + ascinc.pos + ascinc.pos + dryarg.pos + lobsip.pos + monfis.pos)
+
+
+
+##  ---------------------------------------  ##
+                # Legs
+##  ---------------------------------------  ##
+
+leg.pos <- (amocan.pos + petcan.pos)
+
 
 
 
