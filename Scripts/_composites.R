@@ -587,7 +587,7 @@ sp::plot(states, add = T, border = 'gray45')
 dev.off()
 
 jpeg(file = "./Maps/Composite Maps/c3_current_neg.jpg", width = 1080, height = 1138, quality = 100)
-plot(c3.neg, col = rev(bpy.colors(4)), main = 'C3 - Current (-)')
+plot(c3.neg, col = bpy.colors(4), main = 'C3 - Current (-)')
 sp::plot(countries, add = T, border = 'gray45')
 sp::plot(states, add = T, border = 'gray45')
 dev.off()
@@ -599,7 +599,7 @@ sp::plot(states, add = T, border = 'gray45')
 dev.off()
 
 jpeg(file = "./Maps/Composite Maps/c3_45_neg.jpg", width = 1080, height = 1138, quality = 100)
-plot(c3.45neg, col = rev(bpy.colors(4)), main = 'C3 - 4.5 (-)')
+plot(c3.45neg, col = bpy.colors(4), main = 'C3 - 4.5 (-)')
 sp::plot(countries, add = T, border = 'gray45')
 sp::plot(states, add = T, border = 'gray45')
 dev.off()
@@ -611,7 +611,7 @@ sp::plot(states, add = T, border = 'gray45')
 dev.off()
 
 jpeg(file = "./Maps/Composite Maps/c3_85_neg.jpg", width = 1080, height = 1138, quality = 100)
-plot(c3.85neg, col = rev(bpy.colors(4)), main = 'C3 - 8.5 (-)')
+plot(c3.85neg, col = bpy.colors(4), main = 'C3 - 8.5 (-)')
 sp::plot(countries, add = T, border = 'gray45')
 sp::plot(states, add = T, border = 'gray45')
 dev.off()
@@ -620,12 +620,11 @@ dev.off()
             # C4 Grasses
 ##  ---------------------------------------  ##
 c4.pos <- (boucur.pos + schsco.pos + sornut.pos)
-
-
-
-
-
-
+c4.neg <- (boucur.neg + schsco.neg + sornut.neg)
+c4.45pos <- (boucur.45pos + schsco.45pos + sornut.45pos)
+c4.45neg <- (boucur.45neg + schsco.45neg + sornut.45neg)
+c4.85pos <- (boucur.85pos + schsco.85pos + sornut.85pos)
+c4.85neg <- (boucur.85neg + schsco.85neg + sornut.85neg)
 
 jpeg(file = "./Maps/Composite Maps/c4_current_pos.jpg", width = 1080, height = 1138, quality = 100)
 plot(c4.pos, col = rev(topo.colors(4)), main = 'C4 - Current (+)')
@@ -634,25 +633,126 @@ sp::plot(states, add = T, border = 'gray45')
 dev.off()
 
 jpeg(file = "./Maps/Composite Maps/c4_current_neg.jpg", width = 1080, height = 1138, quality = 100)
-plot(c4.neg, col = rev(bpy.colors(4)), main = 'C4 - Current (-)')
+plot(c4.neg, col = bpy.colors(4), main = 'C4 - Current (-)')
 sp::plot(countries, add = T, border = 'gray45')
 sp::plot(states, add = T, border = 'gray45')
 dev.off()
 
+jpeg(file = "./Maps/Composite Maps/c4_45_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(c4.45pos, col = rev(topo.colors(4)), main = 'C4 - 4.5 (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/c4_45_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(c4.45neg, col = bpy.colors(4), main = 'C4 - 4.5 (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/c4_85_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(c4.85pos, col = rev(topo.colors(4)), main = 'C4 - 8.5 (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/c4_85_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(c4.85neg, col = bpy.colors(4), main = 'C4 - 8.5 (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
 
 ##  ---------------------------------------  ##
               # Forbs
 ##  ---------------------------------------  ##
 forb.pos <- (ascinc.pos + ascinc.pos + ascinc.pos + dryarg.pos + lobsip.pos + monfis.pos)
+forb.neg <- (ascinc.neg + ascinc.neg + ascinc.neg + dryarg.neg + lobsip.neg + monfis.neg)
+forb.45pos <- (ascinc.45pos + ascinc.45pos + ascinc.45pos + dryarg.45pos + lobsip.45pos + monfis.45pos)
+forb.45neg <- (ascinc.45neg + ascinc.45neg + ascinc.45neg + dryarg.45neg + lobsip.45neg + monfis.45neg)
+forb.85pos <- (ascinc.85pos + ascinc.85pos + ascinc.85pos + dryarg.85pos + lobsip.85pos + monfis.85pos)
+forb.85neg <- (ascinc.85neg + ascinc.85neg + ascinc.85neg + dryarg.85neg + lobsip.85neg + monfis.85neg)
 
+jpeg(file = "./Maps/Composite Maps/forb_current_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(forb.pos, col = rev(topo.colors(7)), main = 'Forb - Current (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
 
+jpeg(file = "./Maps/Composite Maps/forb_current_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(forb.neg, col = bpy.colors(7), main = 'Forb - Current (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/forb_45_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(forb.45pos, col = rev(topo.colors(7)), main = 'Forb - 4.5 (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/forb_45_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(forb.45neg, col = bpy.colors(7), main = 'Forb - 4.5 (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/forb_85_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(forb.85pos, col = rev(topo.colors(7)), main = 'Forb - 8.5 (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/forb_85_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(forb.85neg, col = bpy.colors(7), main = 'Forb - 8.5 (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
 
 ##  ---------------------------------------  ##
                 # Legs
 ##  ---------------------------------------  ##
-
 leg.pos <- (amocan.pos + petcan.pos)
+leg.neg <- (amocan.neg + petcan.neg)
+leg.45pos <- (amocan.45pos + petcan.45pos)
+leg.45neg <- (amocan.45neg + petcan.45neg)
+leg.85pos <- (amocan.85pos + petcan.85pos)
+leg.85neg <- (amocan.85neg + petcan.85neg)
 
+jpeg(file = "./Maps/Composite Maps/leg_current_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(leg.pos, col = rev(topo.colors(3)), main = 'Legumes - Current (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/leg_current_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(leg.neg, col = bpy.colors(3), main = 'Legumes - Current (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/leg_45_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(leg.45pos, col = rev(topo.colors(3)), main = 'Legumes - 4.5 (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/leg_45_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(leg.45neg, col = bpy.colors(3), main = 'Legumes - 4.5 (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/leg_85_pos.jpg", width = 1080, height = 1138, quality = 100)
+plot(leg.85pos, col = rev(topo.colors(3)), main = 'Legumes - 8.5 (+)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
+
+jpeg(file = "./Maps/Composite Maps/leg_85_neg.jpg", width = 1080, height = 1138, quality = 100)
+plot(leg.85neg, col = bpy.colors(3), main = 'Legumes - 8.5 (-)')
+sp::plot(countries, add = T, border = 'gray45')
+sp::plot(states, add = T, border = 'gray45')
+dev.off()
 
 
 
