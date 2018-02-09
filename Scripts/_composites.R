@@ -17,13 +17,13 @@
 library(rgbif); library(rbison); library(ecoengine); library(spocc); library(rgdal);
 library(rgeos); library(dismo); library(raster); library(scrubr); library(geosphere);
 library(scales); library(rJava); library(mapr); library(ggmap); library(ggplot2);
-library(sp)
+library(sp); library(devEMF)
 
 # Check to make sure maxent is running through R
 system.file('java', package = 'dismo'); maxent(); .jinit()
 
 # Set working directory & clear environment
-setwd("~/Documents/School/1. Iowa State/_MS Project/_Leopold Project/Lyon_etal_2018_SDM_Project")
+setwd("~/Documents/School/1. Iowa State/_MS Project/_Leopold Project/Lyon_etal_2018_SDM_Project/Maps")
 rm(list = ls())
 
 # Get predictor variable lists for each species
@@ -580,7 +580,8 @@ c3.85pos <- (elyvir.85pos + koemac.85pos + stispa.85pos)
 c3.85neg <- (elyvir.85neg + koemac.85neg + stispa.85neg)
 
 # Now can plot each of these and save them!
-jpeg(file = "./Maps/Composite Maps/c3_current_pos.jpg", width = 1080, height = 1138, quality = 100)
+# jpeg(file = "./Maps/Composite Maps/c3_current_pos.jpg", width = 1080, height = 1138, quality = 100, res = 300)
+bitmap("./Maps/Composite Maps/c3_current_pos.tiff", height = 12, width = 17, units = 'cm', res = 300)
 plot(c3.pos, col = rev(gray.colors(4)), main = 'C3 - Current (+)')
 sp::plot(countries, add = T, border = 'black')
 sp::plot(states, add = T, border = 'black')
@@ -753,6 +754,49 @@ plot(leg.85neg, col = bpy.colors(3), main = 'Legumes - 8.5 (-)')
 sp::plot(countries, add = T, border = 'gray45')
 sp::plot(states, add = T, border = 'gray45')
 dev.off()
+
+
+##  ---------------------------------------  ##
+     # Actual Figure Production
+##  ---------------------------------------  ##
+# Re-set the working directory so the figures are printed to the right place.
+setwd("~/Documents/School/1. Iowa State/_MS Project/-Thesis Chapters/Chapter 3 - SDMs/Chap 3 Figures/Lyon_Chap3_D13 Figs")
+
+# Figure 1. C3 Grass Response
+emf(file = "./Figure1.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+plot(c3.85pos, legend = F, col = rev(gray.colors(4)), bty = 'n', box = F, axes = F)
+legend("left", legend = rev(c(0:3)), fill = gray.colors(4), bty = 'n')
+sp::plot(countries, add = T, border = 'black')
+sp::plot(states, add = T, border = 'black')
+dev.off()
+
+# Figure 2. C4 Grass Response
+emf(file = "./Figure2.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+plot(c4.85pos, legend = F, col = rev(gray.colors(4)), bty = 'n', box = F, axes = F)
+legend("left", legend = rev(c(0:3)), fill = gray.colors(4), bty = 'n')
+sp::plot(countries, add = T, border = 'black')
+sp::plot(states, add = T, border = 'black')
+dev.off()
+
+# Figure 3. Forb Response
+emf(file = "./Figure3.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+plot(forb.85pos, legend = F, col = rev(gray.colors(7)), bty = 'n', box = F, axes = F)
+legend("left", legend = rev(c(0:6)), fill = gray.colors(7), bty = 'n')
+sp::plot(countries, add = T, border = 'black')
+sp::plot(states, add = T, border = 'black')
+dev.off()
+
+# Figure 4. Legume Response
+emf(file = "./Figure4.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+plot(leg.85pos, col = rev(gray.colors(3)), main = 'Legumes - 8.5 (+)')
+legend("left", legend = rev(c(0:2)), fill = gray.colors(3), bty = 'n')
+sp::plot(countries, add = T, border = 'black')
+sp::plot(states, add = T, border = 'black')
+dev.off()
+
+
+
+
 
 
 
