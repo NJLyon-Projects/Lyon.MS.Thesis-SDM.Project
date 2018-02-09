@@ -762,34 +762,40 @@ dev.off()
 # Re-set the working directory so the figures are printed to the right place.
 setwd("~/Documents/School/1. Iowa State/_MS Project/-Thesis Chapters/Chapter 3 - SDMs/Chap 3 Figures/Lyon_Chap3_D13 Figs")
 
+# Manually set the color palletes for each species so you get nice and consistent colors across plots
+  ## I.e. One color indicates the same number of co-occuring species across all plots
+grass.cols <- c("white", "#bfd3e6", "#8c96c6", "#8c6bb1")
+forb.cols <- c("white", "#bfd3e6", "#8c96c6", "#8c6bb1", "#88419d", "#810f7c", "#4d004b")
+leg.cols <- c("white", "#bfd3e6", "#8c96c6")
+
 # Figure 1. C3 Grass Response
 emf(file = "./Figure1.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
-plot(c3.85pos, legend = F, col = rev(gray.colors(4)), bty = 'n', box = F, axes = F)
-legend("left", legend = rev(c(0:3)), fill = gray.colors(4), bty = 'n')
+plot(c3.85pos, legend = F, col = grass.cols, bty = 'n', box = F, axes = F)
+legend("left", legend = rev(c(0:3)), fill = rev(grass.cols), bty = 'n')
 sp::plot(countries, add = T, border = 'black')
 sp::plot(states, add = T, border = 'black')
 dev.off()
 
 # Figure 2. C4 Grass Response
 emf(file = "./Figure2.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
-plot(c4.85pos, legend = F, col = rev(gray.colors(4)), bty = 'n', box = F, axes = F)
-legend("left", legend = rev(c(0:3)), fill = gray.colors(4), bty = 'n')
+plot(c4.85pos, legend = F, col = grass.cols, bty = 'n', box = F, axes = F)
+legend("left", legend = rev(c(0:3)), fill = rev(grass.cols), bty = 'n')
 sp::plot(countries, add = T, border = 'black')
 sp::plot(states, add = T, border = 'black')
 dev.off()
 
 # Figure 3. Forb Response
 emf(file = "./Figure3.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
-plot(forb.85pos, legend = F, col = rev(gray.colors(7)), bty = 'n', box = F, axes = F)
-legend("left", legend = rev(c(0:6)), fill = gray.colors(7), bty = 'n')
+plot(forb.85pos, legend = F, col = forb.cols, bty = 'n', box = F, axes = F)
+legend("left", legend = rev(c(0:6)), fill = rev(forb.cols), bty = 'n')
 sp::plot(countries, add = T, border = 'black')
 sp::plot(states, add = T, border = 'black')
 dev.off()
 
 # Figure 4. Legume Response
 emf(file = "./Figure4.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
-plot(leg.85pos, col = rev(gray.colors(3)), main = 'Legumes - 8.5 (+)')
-legend("left", legend = rev(c(0:2)), fill = gray.colors(3), bty = 'n')
+plot(leg.85pos, legend = F, col = leg.cols, bty = 'n', box = F, axes = F)
+legend("left", legend = rev(c(0:2)), fill = rev(leg.cols), bty = 'n')
 sp::plot(countries, add = T, border = 'black')
 sp::plot(states, add = T, border = 'black')
 dev.off()
@@ -797,6 +803,11 @@ dev.off()
 
 
 
+plot(leg.85pos, legend = F, col = test.cols, bty = 'n', box = F, axes = F)
+legend("left", legend = rev(c(0:2)), fill = rev(test.cols), bty = 'n')
 
+
+plot(forb.85pos, legend = F, col = test.cols, bty = 'n', box = F, axes = F)
+legend("left", legend = rev(c(0:6)), fill = rev(test.cols), bty = 'n')
 
 
