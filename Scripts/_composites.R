@@ -769,45 +769,62 @@ forb.cols <- c("white", "#bfd3e6", "#8c96c6", "#8c6bb1", "#88419d", "#810f7c", "
 leg.cols <- c("white", "#bfd3e6", "#8c96c6")
 
 # Figure 1. C3 Grass Response
-emf(file = "./Figure1.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+emf(file = "./Figure1_rcp45.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+plot(c3.45pos, legend = F, col = grass.cols, bty = 'n', box = F, axes = F)
+legend("left", title = "RCP 4.5", legend = rev(c(0:3)), fill = rev(grass.cols), bty = 'n')
+sp::plot(countries, add = T, border = 'black')
+sp::plot(states, add = T, border = 'black')
+dev.off()
+
+emf(file = "./Figure1_rcp85.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
 plot(c3.85pos, legend = F, col = grass.cols, bty = 'n', box = F, axes = F)
-legend("left", legend = rev(c(0:3)), fill = rev(grass.cols), bty = 'n')
+legend("left", title = "RCP 8.5", legend = rev(c(0:3)), fill = rev(grass.cols), bty = 'n')
 sp::plot(countries, add = T, border = 'black')
 sp::plot(states, add = T, border = 'black')
 dev.off()
 
 # Figure 2. C4 Grass Response
-emf(file = "./Figure2.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+emf(file = "./Figure2_rcp45.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+plot(c4.45pos, legend = F, col = grass.cols, bty = 'n', box = F, axes = F)
+legend("left", title = "RCP 4.5", legend = rev(c(0:3)), fill = rev(grass.cols), bty = 'n')
+sp::plot(countries, add = T, border = 'black')
+sp::plot(states, add = T, border = 'black')
+dev.off()
+
+emf(file = "./Figure2_rcp85.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
 plot(c4.85pos, legend = F, col = grass.cols, bty = 'n', box = F, axes = F)
-legend("left", legend = rev(c(0:3)), fill = rev(grass.cols), bty = 'n')
+legend("left", title = "RCP 8.5", legend = rev(c(0:3)), fill = rev(grass.cols), bty = 'n')
 sp::plot(countries, add = T, border = 'black')
 sp::plot(states, add = T, border = 'black')
 dev.off()
 
 # Figure 3. Forb Response
-emf(file = "./Figure3.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+emf(file = "./Figure3_rcp45.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+plot(forb.45pos, legend = F, col = forb.cols, bty = 'n', box = F, axes = F)
+legend("left", title = "RCP 4.5", legend = rev(c(0:6)), fill = rev(forb.cols), bty = 'n')
+sp::plot(countries, add = T, border = 'black')
+sp::plot(states, add = T, border = 'black')
+dev.off()
+
+emf(file = "./Figure3_rcp85.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
 plot(forb.85pos, legend = F, col = forb.cols, bty = 'n', box = F, axes = F)
-legend("left", legend = rev(c(0:6)), fill = rev(forb.cols), bty = 'n')
+legend("left", title = "RCP 8.5", legend = rev(c(0:6)), fill = rev(forb.cols), bty = 'n')
 sp::plot(countries, add = T, border = 'black')
 sp::plot(states, add = T, border = 'black')
 dev.off()
 
 # Figure 4. Legume Response
-emf(file = "./Figure4.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
-plot(leg.85pos, legend = F, col = leg.cols, bty = 'n', box = F, axes = F)
-legend("left", legend = rev(c(0:2)), fill = rev(leg.cols), bty = 'n')
+emf(file = "./Figure4_rcp45.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+plot(leg.45pos, legend = F, col = leg.cols, bty = 'n', box = F, axes = F)
+legend("left", title = "RCP 4.5", legend = rev(c(0:2)), fill = rev(leg.cols), bty = 'n')
 sp::plot(countries, add = T, border = 'black')
 sp::plot(states, add = T, border = 'black')
 dev.off()
 
-
-
-
-plot(leg.85pos, legend = F, col = test.cols, bty = 'n', box = F, axes = F)
-legend("left", legend = rev(c(0:2)), fill = rev(test.cols), bty = 'n')
-
-
-plot(forb.85pos, legend = F, col = test.cols, bty = 'n', box = F, axes = F)
-legend("left", legend = rev(c(0:6)), fill = rev(test.cols), bty = 'n')
-
+emf(file = "./Figure4_rcp85.emf", bg = "white", width = 7, height = 7, family = "Calibri", coordDPI = 350)
+plot(leg.85pos, legend = F, col = leg.cols, bty = 'n', box = F, axes = F)
+legend("left", title = "RCP 8.5", legend = rev(c(0:2)), fill = rev(leg.cols), bty = 'n')
+sp::plot(countries, add = T, border = 'black')
+sp::plot(states, add = T, border = 'black')
+dev.off()
 
