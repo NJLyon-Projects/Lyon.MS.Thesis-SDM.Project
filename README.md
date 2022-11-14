@@ -1,2 +1,9 @@
-# Lyon_etal_2018_SDM
-A version of Nicholas J Lyon's modeling thesis chapter (SDMs) that is ready to be made publicly available post-publication.
+# Evaluating the Utility of Species Distribution Models in Informing Climate Change-Resilient Grassland Restoration Strategy
+
+## Repository Overview
+
+This repository contains all of the code supporting [this paper](https://www.frontiersin.org/articles/10.3389/fevo.2019.00033/full). See below for the paper abstract.
+
+## Paper Abstract
+
+Tallgrass prairie ecosystems in North America are heavily degraded and require effective restoration strategies if prairie specialist taxa are to be preserved. One common management tool used to restore grassland is the application of a seed-mix of native prairie plant species. While this technique is effective in the short-term, it is critical that species' resilience to changing climate be evaluated when designing these mixes. By utilizing species distribution models (SDMs), species' bioclimatic envelopes–and thus the geographic area suitable for them–can be quantified and predicted under various future climate regimes, and current seed-mixes may be modified to include more climate resilient species or exclude more affected species. We evaluated climate response on plant functional groups to examine the generalizability of climate response among species of particular functional groups. We selected 14 prairie species representing the functional groups of cool-season and warm-season grasses, forbs, and legumes and we modeled their responses under both a moderate and more extreme predicted future. Our functional group “composite maps” show that warm-season grasses, forbs, and legumes responded similarly to other species within their functional group, while cool-season grasses showed less inter-species concordance. The value of functional group as a rough method for evaluating climate-resilience is therefore supported, but candidate cool-season grass species will require more individualized attention. This result suggests that seed-mix designers may be able to use species with more occurrence records to generate functional group-level predictions to assess the climate response of species for which there are prohibitively few occurrence records for modeling.
