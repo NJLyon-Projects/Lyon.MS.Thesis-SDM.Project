@@ -1,8 +1,8 @@
 # Evaluating the Utility of Species Distribution Models in Informing Climate Change-Resilient Grassland Restoration Strategy
 
-## Repository Overview
+### Nicholas J. Lyon, Diane M. Debinski, and Imtiaz Rangwala
 
-This repository contains all of the code supporting [this paper](https://www.frontiersin.org/articles/10.3389/fevo.2019.00033/full). See below for the paper abstract.
+This repository contains all relevant code to the [Lyon et al. 2019](https://www.frontiersin.org/articles/10.3389/fevo.2019.00033/full) paper published in Frontiers in Ecology and Evolution.
 
 ## Paper Abstract
 
